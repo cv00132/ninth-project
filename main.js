@@ -6,30 +6,32 @@ function getInfo(callback) {
     });
 }
 
-var labels = "";
-var icons = "";
-
 function formData(data) {
-  var information = data;
-    for (var i = 0; i < information.length; i++) {
-      if ("type" === "select") {
+    for (var i = 0; i < data.length; i++) {
+        var icons = data[i].icon;
+        var labels = data[i].label;
+        var types = data[i].type;
+        var language = data[i].options;
 
-      } else if ("type") {
-
-      }
-        console.log(labels);
-        $(".form").append(`
-          <div class="inputs">
-          <i class= "small-icon fa ${information[i].icon}"</i> ${information[i].label}
-          </div>`);
+        if (types === "select") {
+            $(".form").append(`<${types}><option>${labels}</option></${types}>`)
+            for (var count = 0; count < language.length; count++) {
+                $(`${types}`).append(`<option>${language[count].label}</option>`)
+            }
+        } else if (types === "textarea") {
+            $(".form").append(`
+              <div class>
+              <i class= "small-icon fa ${icons}"</i>
+              <${types} placeholder = "${labels}"></${types}>
+              </div>`)
+        } else if (types != "select" && types != "textarea") {
+            $(".form").append(`
+           <div class="formInputs">
+           <i class= "small-icon fa ${icons}"</i>
+           <input placeholder = "${labels}"></input>
+           </div>`)
+        }
     }
-  }
 };
-
-  // if (label === "Select Language") {
-  //   return `<select>${label}</select>`
-  // } else if (label === "Your Comment"){
-  //   return `<textarea>${label}</textarea>`
-  // } else
 
 getInfo(formData);

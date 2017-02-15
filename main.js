@@ -1,6 +1,6 @@
 function getInfo(callback) {
     $.ajax({
-        url: `http://json-data.herokuapp.com/forms`,
+        url: `https://json-data.herokuapp.com/forms`,
         dataType: "json",
         success: callback
     });
@@ -21,15 +21,16 @@ function formData(data) {
         } else if (types === "textarea") {
             $(".form").append(`
               <div class="formInputs">
+              <i class= "small-icon fa ${icons}" aria-hidden="true"></i>
               <${types} placeholder = "${labels}"></${types}>
               </div>
-              <i class= "small-icon fa ${icons}"</i>`)
+              `)
         } else if (types != "select" && types != "textarea") {
             $(".form").append(`
-           <div class="formInputs">
+           <div class="formInputs"><i class= "small-icon fa ${icons}" aria-hidden="true"></i>
            <input placeholder = "${labels}"></input>
            </div>
-           <i class= "fa ${icons}"</i>`)
+           `)
         }
     }
 };

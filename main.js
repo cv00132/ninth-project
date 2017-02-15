@@ -14,22 +14,22 @@ function formData(data) {
         var language = data[i].options;
 
         if (types === "select") {
-            $(".form").append(`<${types}><option>${labels}</option></${types}>`)
+            $(".form").append(`<div class="formInputs"><${types}><option>${labels}...</option></${types}></div>`)
             for (var count = 0; count < language.length; count++) {
                 $(`${types}`).append(`<option>${language[count].label}</option>`)
             }
         } else if (types === "textarea") {
             $(".form").append(`
-              <div class>
-              <i class= "small-icon fa ${icons}"</i>
+              <div class="formInputs">
               <${types} placeholder = "${labels}"></${types}>
-              </div>`)
+              </div>
+              <i class= "small-icon fa ${icons}"</i>`)
         } else if (types != "select" && types != "textarea") {
             $(".form").append(`
            <div class="formInputs">
-           <i class= "small-icon fa ${icons}"</i>
            <input placeholder = "${labels}"></input>
-           </div>`)
+           </div>
+           <i class= "fa ${icons}"</i>`)
         }
     }
 };
